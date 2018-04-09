@@ -19,3 +19,9 @@ h1 {
 main {
     padding: 1rem;
 }
+
+path {
+    stroke: steelblue;
+    stroke-width: 1;
+    fill: none;
+}

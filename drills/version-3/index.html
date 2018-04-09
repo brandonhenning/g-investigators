@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js"></script>
-        <link rel="stylesheet" href="style.css" />
+        <link rel='stylesheet' href='style.css' />
     </head>
     <body>
         <header>
@@ -11,7 +10,26 @@
         <main>
         <section>
             <h2>Students Graduated</h2>
+            <canvas id='line-chart'></canvas>
         </section>
         </main>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js'></script>
+        <script>
+            const ctx = $('#line-chart')
+
+            const lineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Starting','2014', '2015', '2016'],
+                    datasets: [
+                        {
+                            label: 'Galvanize Student Graduates',
+                            data: [0, 73, 199, 395]
+                        }
+                    ]
+                }
+            })
+        </script>
     </body>
 </html>

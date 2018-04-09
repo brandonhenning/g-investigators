@@ -10,9 +10,12 @@
     "author": "Kyle Coberly",
     "license": "ISC",
     "dependencies": {
+        "body-parser": "^1.18.2",
+        "dotenv": "^5.0.1",
         "express": "^4.16.2",
         "hbs": "^4.0.1",
-        "path": "^0.12.7"
+        "path": "^0.12.7",
+        "stripe": "^5.8.0"
     },
     "devDependencies": {
         "nodemon": "^1.12.5"

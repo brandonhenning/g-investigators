@@ -6,7 +6,7 @@ require('dotenv').config()
 const bodyParser = require('body-parser')
 const path = require('path')
 
-var stripe = require('stripe')('sk_test_sg4ukrpfppaQZkb0HP7VnmDk')
+var stripe = require('stripe')(process.env.SECRET_KEY)
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.set('views', path.join(__dirname, 'views'))

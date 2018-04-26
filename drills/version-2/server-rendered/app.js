@@ -2,16 +2,13 @@ require('dotenv').load()
 
 const express = require('express')
 const app = express()
-
+require('dotenv').config()
 const bodyParser = require('body-parser')
 const path = require('path')
-const keyPublishable = process.env.PUBLISHABLE_KEY
-const keySecret = process.env.SECRET_KEY
 
-const stripe = require('stripe')(keySecret)
+var stripe = require('stripe')(process.env.SECRET_KEY)
 
-
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({ extended: false }))
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'hbs')
 app.use(require('serve-static')(path.join(__dirname, 'public')))
@@ -21,27 +18,38 @@ app.get('/', (request, response) => {
 })
 
 app.get('/bill', (request, response) => {
-    response.render('bill', {keyPublishable})
+    response.render('bill')
 })
 
-app.post('/charge', (request, response) => {
-    // let amount = 500
 
-    stripe.customers.create({
-        email: request.body.stripeEmail,
-        source: request.body.stripeToken
-    })
-    .then(customer => 
+app.post("/charge", (request, response) => {
+    createCharge(
+        request.body.amount * 100,
+        request.body.service,
+        request.body.stripeToken
+    ).then(charge => {
+        response.render("success", {amount: charge.amount / 100});
+    }).catch(error => {
+        response.render("error", error)
+    });
+});
+
+
+function createCharge (amount, service, token) {
+    return new Promise((resolve, reject) => {
         stripe.charges.create({
-            amount, 
-            description: 'Sample Charge',
-            currency: 'usd',
-            customer: customer.id
-        }))
-        .then(charge => response.render('success', {amount: charge.amount}))
-})
+            amount,
+            currency: "usd",
+            description: service,
+            source: token
+        }, (error, charge) => {
+            if (error){
+                reject(error)
+            } else {
+                resolve(charge)
+            }
+        })
+    })
+}
 
-
-
-app.listen(process.env.PORT || 3000)
-
+app.listen(process.env.PORT || 4000)

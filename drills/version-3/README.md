@@ -10,4 +10,4 @@ You're making the new Galvanize website, and need to include a line chart showin
 
 Your chart should have labeled axes, no legend, and have an y-axis that starts at 0.
 
-Deploy your work and add a link to it:::::  https://chartjs-practice.firebaseapp.com.
+Deploy your work and add a link to it:::::  https://chartjs-galvanize.firebaseapp.com/.

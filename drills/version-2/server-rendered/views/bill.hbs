@@ -1,16 +1,14 @@
 <section>
     <h2>Pay Your Bill</h2>
-        <form action="app.post()" method="POST">
-            <script
-              src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-              data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-              data-amount="38799"
-              data-name="Stripe.com"
-              data-description="Example charge"
-              data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-              data-locale="auto"
-              data-zip-code="true">
-            </script>
-            <script src='../app.js'></script>
+    <div class="form-wrapper">
+        <form action="/charge" method="POST" id="payment-form">
+            <p>You owe <strong>$387</strong>.</p>
+            <input type="number" min="0" max="387" name="amount" id="amount" placeholder="How much to pay?" />
+            <input type="hidden" name="service" value="consulting" />
+            <div id="card-element"></div>
+            <div id="card-errors" role="alert"></div>
+            <input type="submit" value="Submit Payment" />
         </form>
+    </div>
 </section>
+<script src="stripe.js"></script>

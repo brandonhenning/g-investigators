@@ -8,10 +8,10 @@
             <h1>galvanize</h1>
         </header>
         <main>
-        <section>
-            <h2>Students Graduated</h2>
-            <canvas id='line-chart'></canvas>
-        </section>
+            <section>
+                <h2>Students Graduated</h2>
+                <canvas id='line-chart'></canvas>
+            </section>
         </main>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js'></script>
@@ -41,15 +41,30 @@
                     labels: ['Starting','2014', '2015', '2016'],
                     datasets: [
                         {
-                            data: [1,2]
+                            data: [0, 73, 199, 395]
                         }
                     ]
                 },
                 options: {
                     legend: {
                         display: false
+                    }, 
+                    scales: {
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Students Graduated'
+                            }
+                        }],
+                        xAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Year'
+                            }
+                        }]
                     }
-                }
+                },
+
             })
         </script>
     </body>

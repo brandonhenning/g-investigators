@@ -28,11 +28,11 @@ app.post("/charge", (request, response) => {
         request.body.service,
         request.body.stripeToken
     ).then(charge => {
-        response.render("success", {amount: charge.amount / 100});
+        response.render("success", {amount: charge.amount / 100})
     }).catch(error => {
         response.render("error", error)
-    });
-});
+    })
+})
 
 
 function createCharge (amount, service, token) {
